@@ -1,0 +1,307 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* shadcn primitive slots - re-pointed at the Pawstives token set below so
+     every generated component (Button, Card, Input, ...) is on-brand out of
+     the box, dark mode included, via the single .dark class switch. */
+  --color-background: var(--surface);
+  --color-foreground: var(--on-surface);
+  --color-card: var(--surface-container-lowest);
+  --color-card-foreground: var(--on-surface);
+  --color-popover: var(--surface-container-lowest);
+  --color-popover-foreground: var(--on-surface);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--on-primary);
+  --color-secondary: var(--secondary-container);
+  --color-secondary-foreground: var(--on-secondary-container);
+  --color-muted: var(--surface-container-low);
+  --color-muted-foreground: var(--on-surface-variant);
+  --color-accent: var(--surface-container-high);
+  --color-accent-foreground: var(--on-surface);
+  --color-destructive: var(--error);
+  --color-border: var(--outline-variant);
+  --color-input: var(--outline-variant);
+  --color-ring: var(--primary);
+  --font-sans: var(--font-plus-jakarta-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Pawstives Material-3 semantic color roles, used directly by feature
+     components (bg-surface-container-low, text-on-surface-variant, ...). */
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-bright: var(--surface-bright);
+  --color-surface-variant: var(--surface-variant);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-on-background: var(--on-background);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  --color-surface-tint: var(--surface-tint);
+  --color-inverse-surface: var(--inverse-surface);
+  --color-inverse-on-surface: var(--inverse-on-surface);
+  --color-inverse-primary: var(--inverse-primary);
+
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-primary-fixed: var(--primary-fixed);
+  --color-on-primary-fixed: var(--on-primary-fixed);
+  --color-primary-fixed-dim: var(--primary-fixed-dim);
+  --color-on-primary-fixed-variant: var(--on-primary-fixed-variant);
+
+  --color-secondary-plain: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-on-secondary-container: var(--on-secondary-container);
+  --color-secondary-fixed: var(--secondary-fixed);
+  --color-on-secondary-fixed: var(--on-secondary-fixed);
+  --color-secondary-fixed-dim: var(--secondary-fixed-dim);
+  --color-on-secondary-fixed-variant: var(--on-secondary-fixed-variant);
+
+  --color-tertiary: var(--tertiary);
+  --color-on-tertiary: var(--on-tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary-container: var(--on-tertiary-container);
+  --color-tertiary-fixed: var(--tertiary-fixed);
+  --color-on-tertiary-fixed: var(--on-tertiary-fixed);
+  --color-tertiary-fixed-dim: var(--tertiary-fixed-dim);
+  --color-on-tertiary-fixed-variant: var(--on-tertiary-fixed-variant);
+
+  --color-error-plain: var(--error);
+  --color-on-error: var(--on-error);
+  --color-error-container: var(--error-container);
+  --color-on-error-container: var(--on-error-container);
+
+  /* Named spacing scale, ported 1:1 from the mockups so their utility
+     classes (gap-space-md, px-gutter-desktop, ...) work unchanged. */
+  --spacing-space-3xs: 0.125rem;
+  --spacing-space-2xs: 0.25rem;
+  --spacing-space-xs: 0.5rem;
+  --spacing-space-sm: 0.75rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2rem;
+  --spacing-space-2xl: 3rem;
+  --spacing-space-3xl: 4rem;
+  --spacing-gutter-mobile: 1rem;
+  --spacing-gutter-desktop: 1.5rem;
+  --container-container-max: 80rem;
+
+  /* Type scale */
+  --text-display-lg: 48px;
+  --text-display-lg--line-height: 56px;
+  --text-display-lg--letter-spacing: -0.03em;
+  --text-display-lg--font-weight: 800;
+  --text-headline-lg: 36px;
+  --text-headline-lg--line-height: 44px;
+  --text-headline-lg--letter-spacing: -0.02em;
+  --text-headline-lg--font-weight: 700;
+  --text-headline-lg-mobile: 28px;
+  --text-headline-lg-mobile--line-height: 36px;
+  --text-headline-lg-mobile--letter-spacing: -0.02em;
+  --text-headline-lg-mobile--font-weight: 700;
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 32px;
+  --text-headline-md--letter-spacing: -0.01em;
+  --text-headline-md--font-weight: 600;
+  --text-headline-sm: 20px;
+  --text-headline-sm--line-height: 28px;
+  --text-headline-sm--font-weight: 600;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 28px;
+  --text-body-lg--font-weight: 400;
+  --text-body-md: 16px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 20px;
+  --text-body-sm--font-weight: 400;
+  --text-label-lg: 15px;
+  --text-label-lg--line-height: 22px;
+  --text-label-lg--letter-spacing: 0.01em;
+  --text-label-lg--font-weight: 600;
+  --text-label-md: 13px;
+  --text-label-md--line-height: 18px;
+  --text-label-md--letter-spacing: 0.02em;
+  --text-label-md--font-weight: 600;
+  --text-label-sm: 11px;
+  --text-label-sm--line-height: 16px;
+  --text-label-sm--letter-spacing: 0.04em;
+  --text-label-sm--font-weight: 700;
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Pawstives Material-3 light scheme, taken verbatim from the mockups. */
+  --surface: #fbf9f4;
+  --surface-dim: #dbdad5;
+  --surface-bright: #fbf9f4;
+  --surface-variant: #e4e2de;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f5f3ee;
+  --surface-container: #efeee9;
+  --surface-container-high: #eae8e3;
+  --surface-container-highest: #e4e2de;
+  --on-surface: #1b1c19;
+  --on-surface-variant: #5c403c;
+  --on-background: #1b1c19;
+  --outline: #916f6b;
+  --outline-variant: #e6bdb8;
+  --surface-tint: #bf0715;
+  --inverse-surface: #30312e;
+  --inverse-on-surface: #f2f1ec;
+  --inverse-primary: #ffb4ab;
+
+  --primary: #b70011;
+  --on-primary: #ffffff;
+  --primary-container: #dc2626;
+  --on-primary-container: #fff6f5;
+  --primary-fixed: #ffdad6;
+  --on-primary-fixed: #410002;
+  --primary-fixed-dim: #ffb4ab;
+  --on-primary-fixed-variant: #93000b;
+
+  --secondary: #855300;
+  --on-secondary: #ffffff;
+  --secondary-container: #fea619;
+  --on-secondary-container: #684000;
+  --secondary-fixed: #ffddb8;
+  --on-secondary-fixed: #2a1700;
+  --secondary-fixed-dim: #ffb95f;
+  --on-secondary-fixed-variant: #653e00;
+
+  --tertiary: #51596f;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #6a7188;
+  --on-tertiary-container: #f8f7ff;
+  --tertiary-fixed: #dae2fd;
+  --on-tertiary-fixed: #131b2e;
+  --tertiary-fixed-dim: #bec6e0;
+  --on-tertiary-fixed-variant: #3f465c;
+
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+}
+
+.dark {
+  /* Pawstives Material-3 dark scheme. The mockups never defined one -
+     derived using standard M3 rules: -fixed/-fixed-dim/on-*-fixed(-variant)
+     roles stay constant across schemes, primary/secondary/tertiary swap
+     with their "dim" fixed counterpart, surfaces darken. */
+  --surface: #14110f;
+  --surface-dim: #14110f;
+  --surface-bright: #3a3532;
+  --surface-variant: #52443f;
+  --surface-container-lowest: #0d0b09;
+  --surface-container-low: #1c1815;
+  --surface-container: #201c19;
+  --surface-container-high: #2a2523;
+  --surface-container-highest: #35302d;
+  --on-surface: #eee1de;
+  --on-surface-variant: #d8c2bd;
+  --on-background: #eee1de;
+  --outline: #a08c87;
+  --outline-variant: #52403c;
+  --surface-tint: #ffb4ab;
+  --inverse-surface: #eee1de;
+  --inverse-on-surface: #201c19;
+  --inverse-primary: #b70011;
+
+  --primary: #ffb4ab;
+  --on-primary: #93000b;
+  --primary-container: #93000b;
+  --on-primary-container: #ffdad6;
+  --primary-fixed: #ffdad6;
+  --on-primary-fixed: #410002;
+  --primary-fixed-dim: #ffb4ab;
+  --on-primary-fixed-variant: #93000b;
+
+  --secondary: #ffb95f;
+  --on-secondary: #653e00;
+  --secondary-container: #653e00;
+  --on-secondary-container: #ffddb8;
+  --secondary-fixed: #ffddb8;
+  --on-secondary-fixed: #2a1700;
+  --secondary-fixed-dim: #ffb95f;
+  --on-secondary-fixed-variant: #653e00;
+
+  --tertiary: #bec6e0;
+  --on-tertiary: #3f465c;
+  --tertiary-container: #3f465c;
+  --on-tertiary-container: #dae2fd;
+  --tertiary-fixed: #dae2fd;
+  --on-tertiary-fixed: #131b2e;
+  --tertiary-fixed-dim: #bec6e0;
+  --on-tertiary-fixed-variant: #3f465c;
+
+  --error: #ffb4ab;
+  --on-error: #690005;
+  --error-container: #93000a;
+  --on-error-container: #ffdad6;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+@layer utilities {
+  .skeleton-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      var(--surface-container-lowest),
+      transparent
+    );
+    animation: skeleton-shimmer-sweep 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes skeleton-shimmer-sweep {
+  100% {
+    transform: translateX(100%);
+  }
+}
