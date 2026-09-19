@@ -20,6 +20,7 @@ import { ThemeToggle } from "@/components/segments/theme-toggle"
 const NAV_LINKS = [
   { label: "Dashboard", href: "/", icon: "space_dashboard" },
   { label: "Clinic Approvals", href: "/providers", icon: "verified" },
+  { label: "Vet Management", href: "/vets", icon: "stethoscope" },
   { label: "Users", href: "/users", icon: "group" },
   { label: "Service Categories", href: "/service-categories", icon: "category" },
   { label: "Reports", href: "/reports", icon: "monitoring" },

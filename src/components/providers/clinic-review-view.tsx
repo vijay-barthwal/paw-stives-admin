@@ -232,13 +232,14 @@ function ClinicReviewView() {
           ) : (
             <div className="flex flex-col gap-1">
               {DAY_LABELS.map((label, dayOfWeek) => {
-                const hour = clinic.hours.find((row) => row.dayOfWeek === dayOfWeek)
-                const isClosed = !hour || hour.isClosed || !hour.openTime || !hour.closeTime
+                const ranges = clinic.hours
+                  .filter((row) => row.dayOfWeek === dayOfWeek && !row.isClosed && row.openTime && row.closeTime)
+                  .sort((a, b) => (a.openTime ?? "").localeCompare(b.openTime ?? ""))
                 return (
                   <div key={label} className="flex items-center justify-between py-1">
                     <span className="font-label-md text-label-md text-on-surface-variant">{label}</span>
                     <span className="font-label-md text-label-md font-semibold text-on-surface">
-                      {isClosed ? "Closed" : `${hour.openTime} – ${hour.closeTime}`}
+                      {ranges.length === 0 ? "Closed" : ranges.map((range) => `${range.openTime} – ${range.closeTime}`).join(", ")}
                     </span>
                   </div>
                 )
